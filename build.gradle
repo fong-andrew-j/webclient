@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.mashape.unirest:unirest-java:1.4.6'
+    compile 'org.json:json:20140107'
+    runtime 'com.mashape.unirest:unirest-java:1.4.6'
+}

@@ -12,7 +12,17 @@ public class HttpClient {
 		System.out.println(jsonResponse.getStatus());
 		System.out.println(jsonResponse.getStatusText());
 
+		JSONObject j2 = jsonResponse.getBody().getObject();
 		JSONArray json = jsonResponse.getBody().getArray();
+//
+		System.out.println(json);
+		for(int i = 0; i < json.length(); i++) {
+			System.out.println(json.getJSONObject(i));
+		}
+
+		for(int i=0; i<json.length(); i++) {
+			System.out.println(json.getJSONObject(i).getString("title"));
+		}
 		Unirest.shutdown();
 	}
 }

@@ -1,38 +1,26 @@
 package com.workday.webclient;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import com.mashape.unirest.http.*;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.json.*;
+import com.workday.webclient.JsonResponse;
 
 public class HttpClient {
-	int statusCode;
-	String statusText;
-	static JSONArray json;
-	
+	static JsonResponse resp;
 	public static void main(String[] args) throws IOException, UnirestException {
 		HttpClient client = new HttpClient();
-		client.get("http://jsonplaceholder.typicode.com/posts");
-		System.out.println(client.statusCode);
-		System.out.println(client.statusText);
-		System.out.println(json.length());
-		System.out.println(json.getJSONObject(3));
-		
-//		for(int i = 0; i < json.length(); i++) {			
-//			System.out.println(json.getJSONObject(i));
-//		}
-//		for(int i=0; i<json.length(); i++) {
-//			System.out.println(json.getJSONObject(i).getString("title"));
-//		}		
+		resp = client.get("http://jsonplaceholder.typicode.com/posts");
+		System.out.println(resp.getStatusCode());
+		System.out.println(resp.getStatusText());
+		System.out.println(resp.getArraySize());
+		System.out.println(resp.getJson(3));
+		System.out.println(resp.getKey(3, "title"));
 		Unirest.shutdown();
 	}
-	
-	public void get(String url) throws UnirestException {		
-		HttpResponse<JsonNode> resp = Unirest.get(url).asJson();
-		statusCode = resp.getStatus();
-		statusText = resp.getStatusText();
-		json = resp.getBody().getArray();		
+
+	public JsonResponse get(String url) throws UnirestException {
+		JsonResponse resp = new JsonResponse(Unirest.get(url).asJson());
+		return resp;
 	}
 }

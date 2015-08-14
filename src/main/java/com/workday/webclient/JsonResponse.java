@@ -32,11 +32,23 @@ public class JsonResponse {
 		return jsonArray.length();
 	}
 
-	public JSONObject getJson(int index) {
+	public JSONObject getJsonObject(int index) {
 		return jsonArray.getJSONObject(index);
 	}
 
-	public String getKey(int index, String key) {
+	public String getKeyString(int index, String key) {
 		return jsonArray.getJSONObject(index).getString(key);
+	}
+	
+	public double getKeyDouble(int index, String key) {
+		return jsonArray.getJSONObject(index).getDouble(key);
+	}
+	
+	public int getKeyInt(int index, String key) {
+		return jsonArray.getJSONObject(index).getInt(key);
+	}
+	
+	public boolean getKeyBoolean(int index, String key) {
+		return jsonArray.getJSONObject(index).getBoolean(key);
 	}
 }

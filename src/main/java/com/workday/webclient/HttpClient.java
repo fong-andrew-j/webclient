@@ -14,8 +14,9 @@ public class HttpClient {
 		System.out.println(resp.getStatusCode());
 		System.out.println(resp.getStatusText());
 		System.out.println(resp.getArraySize());
-		System.out.println(resp.getJson(3));
-		System.out.println(resp.getKey(3, "title"));
+		System.out.println(resp.getJsonObject(3));
+		System.out.println(resp.getKeyString(3, "title"));
+		System.out.println(resp.getKeyInt(3, "id"));
 		Unirest.shutdown();
 	}
 

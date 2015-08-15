@@ -6,6 +6,12 @@ repositories {
 }
 
 dependencies {
+	compile 'org.springframework:spring-aop:4.2.0.RELEASE'
+	compile 'org.springframework:spring-beans:4.2.0.RELEASE'
+	compile 'org.springframework:spring-context:4.2.0.RELEASE'
+	compile 'org.springframework:spring-context-support:4.2.0.RELEASE'
+	compile 'org.springframework:spring-webmvc:4.2.0.RELEASE'
+	compile 'org.springframework:spring-web:4.2.0.RELEASE'
     compile 'com.mashape.unirest:unirest-java:1.4.6'
     compile 'org.json:json:20140107'
     runtime 'com.mashape.unirest:unirest-java:1.4.6'

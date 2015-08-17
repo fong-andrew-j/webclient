@@ -1,6 +1,10 @@
 package com.workday.webclient;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,9 +63,22 @@ public class JsonResponse {
 		this.jsonString = resp.getBody();
 	}
 
-	public String searchJson(String key) throws JsonProcessingException, IOException {
+	public ArrayList<String> searchJson(String key) throws JsonProcessingException, IOException {
 		ObjectMapper m = new ObjectMapper();
-		JsonNode rootNode = m.readTree(getJsonString()).path(key);
-		return rootNode.asText();
+		JsonNode rootNode = m.readTree(getJsonString());
+		ArrayList<String> matches = new ArrayList<String>();
+
+		if (rootNode.isArray()) {
+			for (JsonNode obj : rootNode) {
+				if (obj.get(key) != null) {
+					matches.add(obj.get(key).asText());
+				}
+			}
+		} else {
+			if (rootNode.get(key) != null) {
+				matches.add(rootNode.get(key).asText());
+			}
+		}
+		return matches;
 	}
 }

@@ -5,10 +5,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.workday.webclient.JsonResponse;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -21,14 +24,27 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
 //        String quote = restTemplate.getForObject("http://gturnquist-quoters.cfapps.io/api/random", String.class);
-        String quote = restTemplate.getForObject("http://jsonplaceholder.typicode.com/posts/1", String.class);
-        ObjectMapper m = new ObjectMapper();
-        JsonNode rootNode = m.readTree(quote);
-        JsonNode nameNode = rootNode.path("title");
-        log.info(quote);
-        log.info("DREW :: " + nameNode.asText());
-        log.info("DREW2 :: " + rootNode.path("body").asText());
+//        String quote = restTemplate.getForObject("http://jsonplaceholder.typicode.com/posts/1", String.class);
+//      ObjectMapper m = new ObjectMapper();
+//      JsonNode rootNode = m.readTree(quote);
+//      JsonNode nameNode = rootNode.path("title");
+//      log.info(quote);
+//      log.info("DREW :: " + nameNode.asText());
+//      log.info("DREW2 :: " + rootNode.path("body").asText());
+
+    	JsonResponse resp = new JsonResponse();
+    	resp.get("http://jsonplaceholder.typicode.com/posts/1");
+    	System.out.println(resp.getStatus());
+    	System.out.println(resp.getHeaders());
+    	System.out.println(resp.getJsonString());
+    	System.out.println(resp.searchJson("title"));
+
+//    	RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> quote2 = restTemplate.getForEntity("http://jsonplaceholder.typicode.com/posts", String.class);
+//        System.out.println(quote2.toString());
+//        System.out.println(quote2.getStatusCode());
+//        System.out.println(quote2.getHeaders());
+//        System.out.println(quote2.getBody());
     }
 }

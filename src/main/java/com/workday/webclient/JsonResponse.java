@@ -53,7 +53,7 @@ public class JsonResponse {
 		this.jsonString = resp.getBody();
 	}
 
-	public ArrayList<String> searchJson(String key) throws JsonProcessingException, IOException {
+	public ArrayList<String> searchForKey(String key) throws JsonProcessingException, IOException {
 		ObjectMapper m = new ObjectMapper();
 		JsonNode rootNode = m.readTree(getJsonString());
 		ArrayList<String> matches = new ArrayList<String>();

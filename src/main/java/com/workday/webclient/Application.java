@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,5 +45,16 @@ public class Application implements CommandLineRunner {
     	System.out.println(resp.getHeaders());
     	System.out.println(resp.getJsonString());
 
+    	//Experiment
+    	HttpHeaders headers = new HttpHeaders();
+    	headers.set("Header", "value");
+    	headers.set("Other-Header", "othervalue");
+
+    	HttpEntity<String> entity = new HttpEntity<String>(headers);
+
+    	RestTemplate restTemplate = new RestTemplate();
+    	HttpEntity<String> response = restTemplate.exchange(
+    			"http://jsonplaceholder.typicode.com/users", HttpMethod.GET, entity, String.class, urlVariables);
+    	System.out.println(response.getBody());
     }
 }

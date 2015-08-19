@@ -46,13 +46,43 @@ public class HttpClient {
 	 * HTTP POST
 	 */
 
+	/**
+	 * Performs HTTP POST on a URL allows setting headers and URL parameters
+	 * @param url
+	 * @param urlVariables
+	 * @return
+	 */
+	public ResponseEntity<String> post(String url, HashMap<String, String> urlVariables) {
+		return rest.exchange(url, HttpMethod.POST, headers, String.class, urlVariables);
+	}
+
 	/*****
 	 * HTTP PUT
 	 */
 
+	/**
+	 * Performs HTTP PUT on a URL allows setting headers and URL parameters
+	 * @param url
+	 * @param urlVariables
+	 * @return
+	 */
+	public ResponseEntity<String> put(String url, HashMap<String, String> urlVariables) {
+		return rest.exchange(url, HttpMethod.PUT, headers, String.class, urlVariables);
+	}
+
 	/*****
 	 * HTTP DELETE
 	 */
+
+	/**
+	 * Performs HTTP DELETE on a URL allows settings headers and URL parameters
+	 * @param url
+	 * @param urlVariables
+	 * @return
+	 */
+	public ResponseEntity<String> delete(String url, HashMap<String, String> urlVariables) {
+		return rest.exchange(url, HttpMethod.DELETE, headers, String.class, urlVariables);
+	}
 
 	/*****
 	 * Helpers
@@ -74,5 +104,4 @@ public class HttpClient {
 	private void setHeaders(HttpEntity<String> headers) {
 		this.headers = headers;
 	}
-	//http://stackoverflow.com/questions/19238715/how-to-set-an-accept-header-on-spring-resttemplate-request
 }

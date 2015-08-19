@@ -1,6 +1,7 @@
 package com.workday.webclient;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.slf4j.Logger;
@@ -9,13 +10,24 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 public class HttpClient {
 	private RestTemplate rest = new RestTemplate();
-	private HttpEntity<String> headers;
+	private HttpEntity<?> entity;
+	private HttpHeaders headers;
+	private MultiValueMap<String, String> body;
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
+	public HttpClient() {
+		headers = new HttpHeaders();
+		body = new LinkedMultiValueMap<String, String>();
+	}
 	/*****
 	 * HTTP GET
 	 */
@@ -27,7 +39,7 @@ public class HttpClient {
 	 */
 	public ResponseEntity<String> get(String url) {
 		HashMap<String, String> urlVariables = new HashMap<String, String>();
-		return rest.exchange(url, HttpMethod.GET, headers, String.class, urlVariables);
+		return rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables);
 	}
 
 	/**
@@ -39,12 +51,17 @@ public class HttpClient {
 	 * @return
 	 */
 	public ResponseEntity<String> get(String url, HashMap<String, String> urlVariables) {
-		return rest.exchange(url, HttpMethod.GET, headers, String.class, urlVariables);
+		return rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables);
 	}
 
 	/*****
 	 * HTTP POST
 	 */
+
+	public ResponseEntity<String> post(String url) {
+		HashMap<String, String> urlVariables = new HashMap<String, String>();
+		return rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables);
+	}
 
 	/**
 	 * Performs HTTP POST on a URL allows setting headers and URL parameters
@@ -53,7 +70,7 @@ public class HttpClient {
 	 * @return
 	 */
 	public ResponseEntity<String> post(String url, HashMap<String, String> urlVariables) {
-		return rest.exchange(url, HttpMethod.POST, headers, String.class, urlVariables);
+		return rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables);
 	}
 
 	/*****
@@ -67,7 +84,7 @@ public class HttpClient {
 	 * @return
 	 */
 	public ResponseEntity<String> put(String url, HashMap<String, String> urlVariables) {
-		return rest.exchange(url, HttpMethod.PUT, headers, String.class, urlVariables);
+		return rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables);
 	}
 
 	/*****
@@ -81,7 +98,7 @@ public class HttpClient {
 	 * @return
 	 */
 	public ResponseEntity<String> delete(String url, HashMap<String, String> urlVariables) {
-		return rest.exchange(url, HttpMethod.DELETE, headers, String.class, urlVariables);
+		return rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables);
 	}
 
 	/*****
@@ -98,10 +115,17 @@ public class HttpClient {
 			log.error("Attempting to set headers but headerMap is null");
 			headers = null;
 		}
-		setHeaders(new HttpEntity<String>(headers));
 	}
 
-	private void setHeaders(HttpEntity<String> headers) {
-		this.headers = headers;
+	public void addBody() {
+		body.add("request-originator", "UI");
+		body.add("username", "superuser");
+		body.add("password", "Da7@+%mfbMErS7at");
+		body.add("remote-ip-address", "127.0.0.1");
+		System.out.println(body);
+	}
+
+	public void createEntity() {
+		entity = new HttpEntity<Map>(body, headers);
 	}
 }

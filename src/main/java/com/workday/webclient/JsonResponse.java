@@ -13,13 +13,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonResponse {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
-	private ResponseEntity<String> resp;
 	private HttpStatus status;
 	private HttpHeaders headers;
 	private String jsonString;
 
 	public JsonResponse(ResponseEntity<String> resp) {
-		this.resp = resp;
 		processResponse(resp);
 	}
 

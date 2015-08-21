@@ -72,6 +72,12 @@ public class HttpClient {
 		return rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables);
 	}
 
+	public ResponseEntity<String> put(String url) {
+		HashMap<String, String> urlVariables = new HashMap<String, String>();
+		createEntity();
+		return rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables);
+	}
+
 	/**
 	 * Performs HTTP PUT on a URL allows setting headers and URL parameters
 	 * @param url
@@ -81,6 +87,12 @@ public class HttpClient {
 	public ResponseEntity<String> put(String url, HashMap<String, String> urlVariables) {
 		createEntity();
 		return rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables);
+	}
+
+	public ResponseEntity<String> delete(String url) {
+		HashMap<String, String> urlVariables = new HashMap<String, String>();
+		createEntity();
+		return rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables);
 	}
 
 	/**

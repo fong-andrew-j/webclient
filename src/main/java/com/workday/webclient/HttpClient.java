@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -31,10 +30,10 @@ public class HttpClient {
 	 * @param url
 	 * @return
 	 */
-	public ResponseEntity<String> get(String url) {
+	public JsonResponse get(String url) {
 		HashMap<String, String> urlVariables = new HashMap<String, String>();
 		createEntity();
-		return rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables));
 	}
 
 	/**
@@ -45,9 +44,9 @@ public class HttpClient {
 	 * @param urlVariables
 	 * @return
 	 */
-	public ResponseEntity<String> get(String url, HashMap<String, String> urlVariables) {
+	public JsonResponse get(String url, HashMap<String, String> urlVariables) {
 		createEntity();
-		return rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.GET, entity, String.class, urlVariables));
 	}
 
 	/**
@@ -55,10 +54,10 @@ public class HttpClient {
 	 * @param url
 	 * @return
 	 */
-	public ResponseEntity<String> post(String url) {
+	public JsonResponse post(String url) {
 		HashMap<String, String> urlVariables = new HashMap<String, String>();
 		createEntity();
-		return rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables));
 	}
 
 	/**
@@ -67,15 +66,15 @@ public class HttpClient {
 	 * @param urlVariables
 	 * @return
 	 */
-	public ResponseEntity<String> post(String url, HashMap<String, String> urlVariables) {
+	public JsonResponse post(String url, HashMap<String, String> urlVariables) {
 		createEntity();
-		return rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.POST, entity, String.class, urlVariables));
 	}
 
-	public ResponseEntity<String> put(String url) {
+	public JsonResponse put(String url) {
 		HashMap<String, String> urlVariables = new HashMap<String, String>();
 		createEntity();
-		return rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables));
 	}
 
 	/**
@@ -84,15 +83,15 @@ public class HttpClient {
 	 * @param urlVariables
 	 * @return
 	 */
-	public ResponseEntity<String> put(String url, HashMap<String, String> urlVariables) {
+	public JsonResponse put(String url, HashMap<String, String> urlVariables) {
 		createEntity();
-		return rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.PUT, entity, String.class, urlVariables));
 	}
 
-	public ResponseEntity<String> delete(String url) {
+	public JsonResponse delete(String url) {
 		HashMap<String, String> urlVariables = new HashMap<String, String>();
 		createEntity();
-		return rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables));
 	}
 
 	/**
@@ -101,9 +100,9 @@ public class HttpClient {
 	 * @param urlVariables
 	 * @return
 	 */
-	public ResponseEntity<String> delete(String url, HashMap<String, String> urlVariables) {
+	public JsonResponse delete(String url, HashMap<String, String> urlVariables) {
 		createEntity();
-		return rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables);
+		return new JsonResponse(rest.exchange(url, HttpMethod.DELETE, entity, String.class, urlVariables));
 	}
 
 	/*****

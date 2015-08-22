@@ -17,7 +17,7 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
     	HttpClient client = new HttpClient();
-    	JsonResponse resp = new JsonResponse(client.get("http://jsonplaceholder.typicode.com/users"));
+    	JsonResponse resp = client.get("http://jsonplaceholder.typicode.com/users");
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getHeaders());
     	System.out.println(resp.getJsonString());
@@ -28,7 +28,7 @@ public class Application implements CommandLineRunner {
     	bodyParameters.put("body", "bar");
     	bodyParameters.put("userId", "1");
     	client.addBodyFromMap(bodyParameters);
-    	resp = new JsonResponse(client.post("http://jsonplaceholder.typicode.com/posts"));
+    	resp = client.post("http://jsonplaceholder.typicode.com/posts");
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getJsonString());
 
@@ -38,11 +38,11 @@ public class Application implements CommandLineRunner {
     	bodyParameters.put("body", "bar");
     	bodyParameters.put("userId", "1");
     	client.addBodyFromMap(bodyParameters);
-    	resp = new JsonResponse(client.put("http://jsonplaceholder.typicode.com/posts/1"));
+    	resp = client.put("http://jsonplaceholder.typicode.com/posts/1");
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getJsonString());
 
-    	resp = new JsonResponse(client.delete("http://jsonplaceholder.typicode.com/posts/1"));
+    	resp = client.delete("http://jsonplaceholder.typicode.com/posts/1");
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getJsonString());
 
@@ -58,7 +58,7 @@ public class Application implements CommandLineRunner {
 //
 //    	client.addBodyFromMap(bodyParameters);
 //
-//    	resp = new JsonResponse(client.post("http://localhost:12766/auth-server/services/super/api/v1/token"));
+//    	resp = client.post("http://localhost:12766/auth-server/services/super/api/v1/token");
 //    	System.out.println(resp.getStatus());
 //    	System.out.println(resp.getHeaders());
 //    	System.out.println(resp.getJsonString());

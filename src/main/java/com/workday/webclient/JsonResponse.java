@@ -51,7 +51,7 @@ public class JsonResponse {
 		this.jsonString = resp.getBody();
 	}
 
-	public ArrayList<String> searchForKey(String key) throws JsonProcessingException, IOException {
+	public ArrayList<String> returnAllValuesForKey(String key) throws JsonProcessingException, IOException {
 		ObjectMapper m = new ObjectMapper();
 		JsonNode rootNode = m.readTree(getJsonString());
 		ArrayList<String> matches = new ArrayList<String>();
@@ -68,5 +68,10 @@ public class JsonResponse {
 			}
 		}
 		return matches;
+	}
+
+	public String returnKeyValue(String key) throws JsonProcessingException, IOException {
+		String[] resp = returnAllValuesForKey(key).toArray(new String[0]);
+		return resp[0];
 	}
 }

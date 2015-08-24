@@ -21,7 +21,7 @@ public class Application implements CommandLineRunner {
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getHeaders());
     	System.out.println(resp.getJsonString());
-    	System.out.println(resp.searchForKey("username"));
+    	System.out.println(resp.returnAllValuesForKey("username"));
 
     	HashMap<String, String> bodyParameters = new HashMap<String, String>();
     	bodyParameters.put("title", "foo");

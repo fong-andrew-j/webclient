@@ -17,7 +17,9 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
     	HttpClient client = new HttpClient();
-    	JsonResponse resp = client.get("http://jsonplaceholder.typicode.com/users");
+    	HashMap<String, String> urlParams = new HashMap<String, String>();
+    	urlParams.put("endpoint", "users");
+    	JsonResponse resp = client.get("http://jsonplaceholder.typicode.com/{endpoint}", urlParams);
     	System.out.println(resp.getStatus());
     	System.out.println(resp.getHeaders());
     	System.out.println(resp.getJsonString());

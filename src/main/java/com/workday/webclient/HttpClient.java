@@ -38,7 +38,9 @@ public class HttpClient {
 
 	/**
 	 * Performs HTTP GET on a URL allows setting headers and URL parameters
-	 * What if user only wants header or parameters but not both?
+	 * HashMap<String, String> urlParams = new HashMap<String, String>();
+     * urlParams.put("endpoint", "users");
+     * JsonResponse resp = client.get("http://jsonplaceholder.typicode.com/{endpoint}", urlParams);
 	 * @param url
 	 * @param headerMap
 	 * @param urlVariables
@@ -61,7 +63,10 @@ public class HttpClient {
 	}
 
 	/**
-	 * Performs HTTP POST on a URL allows setting headers and URL parameters
+	 * Performs HTTP POST on a URL allows setting URL parameters
+	 * HashMap<String, String> urlParams = new HashMap<String, String>();
+     * urlParams.put("endpoint", "users");
+     * JsonResponse resp = client.post("http://jsonplaceholder.typicode.com/{endpoint}", urlParams);
 	 * @param url
 	 * @param urlVariables
 	 * @return
@@ -78,7 +83,10 @@ public class HttpClient {
 	}
 
 	/**
-	 * Performs HTTP PUT on a URL allows setting headers and URL parameters
+	 * Performs HTTP PUT on a URL allows setting URL parameters
+	 * HashMap<String, String> urlParams = new HashMap<String, String>();
+     * urlParams.put("endpoint", "users");
+     * JsonResponse resp = client.put("http://jsonplaceholder.typicode.com/{endpoint}", urlParams);
 	 * @param url
 	 * @param urlVariables
 	 * @return
@@ -95,7 +103,10 @@ public class HttpClient {
 	}
 
 	/**
-	 * Performs HTTP DELETE on a URL allows settings headers and URL parameters
+	 * Performs HTTP DELETE on a URL allows settings URL parameters
+	 * HashMap<String, String> urlParams = new HashMap<String, String>();
+     * urlParams.put("endpoint", "users");
+     * JsonResponse resp = client.delete("http://jsonplaceholder.typicode.com/{endpoint}", urlParams);
 	 * @param url
 	 * @param urlVariables
 	 * @return

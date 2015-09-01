@@ -8,8 +8,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'spring-boot'
 
 jar {
@@ -30,7 +28,7 @@ dependencies {
     compile("org.springframework:spring-web")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile("org.projectlombok:lombok:1.16.2")
-    testCompile("junit:junit")    
+    testCompile("junit:junit")
 }
 
 task wrapper(type: Wrapper) {

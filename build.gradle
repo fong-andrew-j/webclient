@@ -12,7 +12,7 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'rest-webclient'
-    version =  '0.1.0'
+    version =  '0.2.0'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
